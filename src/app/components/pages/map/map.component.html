@@ -1,0 +1,44 @@
+<div style="position: absolute; z-index: 500;" class="example-button-row">
+    <div class="container">
+        <div class="space-10"></div>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div *ngIf="displayButtonToggler" fxFlexOffset.lg="15px" fxFlexOffset.xs="15px" fxFlexOffset.md="15px" fxFlexOffset.sm="70px" fxFlexOffset.xl="50px" fxFlex="30">
+                <button (click)="toggleSidebar();" class="bg-wowtow text-dark nav-link nav-toggler" mat-fab>
+                    <i class="material-icons">
+                        view_headline
+                    </i>
+                </button>
+            </div>
+            <div *ngIf="!displayButtonToggler" fxFlexOffset.lg="50px" fxFlexOffset.xs="15px" fxFlexOffset.md="15px" fxFlexOffset.sm="70px" fxFlexOffset.xl="150px" fxFlex="30">
+                <button (click)="toggleSidebar();" class="bg-wowtow text-dark nav-toggler" mat-fab>
+                    <i class="material-icons">
+                        arrow_right_alt
+                    </i>
+                </button>
+            </div>
+            <div fxFlexOffset.lg="35em" fxFlexOffset.xs="60px" fxFlexOffset.md="400px" fxFlexOffset.sm="200px" fxFlexOffset.xl="45em" fxFlex="33">
+                <button class="bg-wowtow text-dark" mat-fab>
+                <i class="material-icons">
+                    touch_app
+                    </i>
+              </button>
+            </div>
+            <div (click)="search();" fxFlexOffset.lg="35em" fxFlexOffset.xs="60px" fxFlexOffset.md="350px" fxFlexOffset.sm="200px" fxFlexOffset.xl="50em" fxFlex="50">
+                <button class="bg-wowtow text-dark" mat-fab>
+                    <i class="material-icons">
+                        search
+                    </i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="outer-wrapper">
+
+    <div class="map-wrapper" id="wrapper" #wrapper>
+        <agm-map [styles]="MapStyles" [latitude]="origin.lat" [longitude]="origin.lng" [scrollwheel]="true" [zoom]="zoom" (idle)="idle()" (centerChange)="centerChange($event)" id="AgmMap" #AgmMap>
+            <agm-marker [latitude]="origin.lat" [longitude]="origin.lng" [markerClickable]="true"></agm-marker>
+            <agm-direction [markerOptions]="markerOptions" [origin]="origin" [destination]="destiny" [renderOptions]="renderOption" *ngIf="destiny.lat !== 0 && destiny.lng !== 0"></agm-direction>
+        </agm-map>
+    </div>
+</div>
