@@ -1,0 +1,62 @@
+.card-redounded {
+    border-radius: 30px;
+}
+
+.bg-card {
+    background-color: rgba(59, 63, 69, 0.8);
+}
+
+.bg-success {
+    background-color: #09c509;
+}
+
+.bg-invalid {
+    background-color: #f26c4f;
+}
+
+input::placeholder {
+    font-size: 18px;
+    font-family: 'Acumin-Bold', serif;
+    color: white !important
+}
+
+input {
+    font-size: 18px;
+    font-family: 'Acumin-Bold', serif;
+    color: white !important
+}
+
+.bg-page {
+    background-image: url(../../../../../assets/images/ipad-605439_1920.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.btn-submit {
+    background-color: #fde90c;
+    font-weight: lighter;
+    border-radius: 20px
+}
+
+@media only screen and (max-width:320px) {
+    .form-group {
+        margin-left: -1%
+    }
+}
+
+@media only screen and (max-width:480px) {
+    .form-mobile {
+        margin-top: -5%
+    }
+    .pw-field {
+        margin-top: -15%
+    }
+    .input-name {
+        position: relative;
+        top: 1.8em
+    }
+    .card-redounded {
+        border-radius: 0px !important
+    }
+}

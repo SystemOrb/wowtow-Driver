@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PublicRoutingModule } from './public.routes';
 import { AngularMaterialModule } from '../../../angular-material.module';
+import { ValidationComponent } from './validation/validation.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { AngularMaterialModule } from '../../../angular-material.module';
     SelfieComponent,
     RegisterComponent,
     LoginComponent,
-    LicenseComponent
+    LicenseComponent,
+    ValidationComponent
   ]
 })
 export class PublicModule { }

@@ -5,6 +5,8 @@ import { RegisterComponent } from './register/register.component';
 import { LicenseComponent } from './license/license.component';
 import { TowImageComponent } from './tow-image/tow-image.component';
 import { SelfieComponent } from './selfie/selfie.component';
+import { ValidationComponent } from './validation/validation.component';
+import { AuthGuard } from '../../../services/GUARDS/auth.guard';
 
 
 const routes: Routes = [
@@ -13,6 +15,7 @@ const routes: Routes = [
     {path: 'driver/upload/license', component: LicenseComponent},
     {path: 'driver/upload/tow', component: TowImageComponent},
     {path: 'driver/upload/selfie', component: SelfieComponent},
+    {path: 'driver/validation', component: ValidationComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

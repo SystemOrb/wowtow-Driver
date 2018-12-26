@@ -64,51 +64,81 @@ Material
     src: url('./assets/fonts/SourceSansPro-Black.ttf')
 }
 
+@font-face {
+    font-family: 'Acumin-LightBold';
+    src: url('./assets/fonts/Acumin-BdItPro.otf')
+}
+
+@font-face {
+    font-family: 'Acumin-Bold';
+    src: url('./assets/fonts/Acumin-BdPro.otf')
+}
+
+@font-face {
+    font-family: 'Acumin-Light';
+    src: url('./assets/fonts/Acumin-ItPro.otf')
+}
+
+@font-face {
+    font-family: 'Acumin-Regular';
+    src: url('./assets/fonts/Acumin-RPro.otf')
+}
+
+@font-face {
+    font-family: 'Campton-Bold';
+    src: url('./assets/fonts/Campton-Bold.otf')
+}
+
+@font-face {
+    font-family: 'Campton-Bold';
+    src: url('./assets/fonts/Campton-Light.otf')
+}
+
 
 /* Default font sizes */
 
 .font-12 {
-    font-size: 12pt;
+    font-size: 12px;
 }
 
 .font-14 {
-    font-size: 14pt;
+    font-size: 14px;
 }
 
 .font-15 {
-    font-size: 15pt;
+    font-size: 15px;
 }
 
 .font-16 {
-    font-size: 16pt;
+    font-size: 16px;
 }
 
 .font-20 {
-    font-size: 20pt;
+    font-size: 20px;
 }
 
 .font-22 {
-    font-size: 22pt;
+    font-size: 22px;
 }
 
 .font-35 {
-    font-size: 35pt;
+    font-size: 35px;
 }
 
 .font-39 {
-    font-size: 39pt;
+    font-size: 39px;
 }
 
 .font-30 {
-    font-size: 30pt;
+    font-size: 30px;
 }
 
 .font-14 {
-    font-size: 14pt;
+    font-size: 14px;
 }
 
 .font-16 {
-    font-size: 16pt;
+    font-size: 16px;
 }
 
 
@@ -136,6 +166,30 @@ Material
 
 .openSansProExtraBold {
     font-family: 'OpenSansPro-SemiBold', serif;
+}
+
+.campton-bold {
+    font-family: 'Campton-Bold', serif
+}
+
+.campton-light {
+    font-family: 'Campton-Bold', serif;
+}
+
+.acumin {
+    font-family: 'Acumin-Regular', serif;
+}
+
+.acumin-bold {
+    font-family: 'Acumin-Bold', serif;
+}
+
+.acumin-light {
+    font-family: 'Acumin-light', serif;
+}
+
+.acumin-boldlight {
+    font-family: 'Acumin-LightBold', serif;
 }
 
 .bg-turno-primary {
@@ -424,4 +478,8 @@ agm-map {
 
 .pac-icon {
     font-size: 18px !important;
+}
+
+.text-bold {
+    font-weight: bold;
 }

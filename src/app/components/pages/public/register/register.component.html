@@ -1,3 +1,78 @@
-<p>
-  register works!
-</p>
+<section class="bg-page" id="wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <div style="margin-top: 15%" class="card w-auto card-redounded bg-card offset-md-3  col-xl-6 col-lg-7">
+                    <div *ngIf="Registered" style="background-color: #09c509;" class="card-header">
+                        <h3 style="position: relative; top:0.5em" class="card-subtitle text-center text-white font-18">
+                            <i color="warn" class="material-icons">fingerprint</i> Your registration has been successfully completed
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <form ngNativeValidate #registerDriver="ngForm" (ngSubmit)="RegisterDriver(registerDriver)">
+                            <a class="box-title m-b-20 text-center offset-4 offset-md-5 offset-lg-5" href="#">
+                                <img class="text-center" style="width: 80px" src="./assets/images/Logo.png" alt="wootow_branding">
+                            </a>
+                            <h3 style="cursor: pointer" [routerLink]="['/public/driver/login']" class="h3 card-title campton-bold text-center text-white">
+                                You have an account? Log in now!
+                            </h3>
+                            <hr style="border: 1px solid #fde90c;">
+                            <div class="form-row">
+                                <div class="form-group col-md-6 offset-1 offset-md-0">
+                                    <mat-form-field color="warn" class="input-name" appearance="outline">
+                                        <mat-label class="text-white">Name</mat-label>
+                                        <input ngModel name="firstname" type="text" required matInput>
+                                        <mat-icon class="text-white" matSuffix>accessibility_new</mat-icon>
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group form-mobile col-md-6 offset-1 offset-md-0">
+                                    <mat-form-field color="warn" appearance="outline">
+                                        <mat-label class="text-white">Lastname</mat-label>
+                                        <input ngModel name="lastname" type="text" required matInput>
+                                        <mat-icon class="text-white" matSuffix>accessibility</mat-icon>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div style="margin-top: -2em" class="form-row">
+                                <div class="form-group form-mobile col-md-6 offset-1 offset-md-0">
+                                    <mat-form-field color="warn" appearance="outline">
+                                        <mat-label class="text-white">Email</mat-label>
+                                        <input ngModel name="email" type="email" required matInput>
+                                        <mat-icon class="text-white" matSuffix>email</mat-icon>
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group form-mobile col-md-6 offset-1 offset-md-0">
+                                    <mat-form-field color="warn" appearance="outline">
+                                        <mat-label class="text-white">City</mat-label>
+                                        <input ngModel name="city" type="text" required matInput>
+                                        <mat-icon class="text-white" matSuffix>location_city</mat-icon>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div style="margin-top: -2em" class="form-row group-top">
+                                <div class="form-group form-mobile col-md-6 offset-1 offset-md-0">
+                                    <mat-form-field color="warn" appearance="outline">
+                                        <mat-label class="text-white">Phone</mat-label>
+                                        <input ngModel name="phone" type="number" required matInput>
+                                        <mat-icon class="text-white" matSuffix>stay_primary_portrait</mat-icon>
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group pw-field form-mobile col-md-6 offset-1 offset-md-0">
+                                    <mat-form-field color="warn" appearance="outline">
+                                        <mat-label class="text-white">Password</mat-label>
+                                        <input minlength="5" ngModel name="password" type="password" required matInput>
+                                        <mat-icon class="text-white" matSuffix>lock</mat-icon>
+                                    </mat-form-field>
+                                </div>
+                                <button *ngIf="!loader" type="submit" class="btn-block font-22 btn-submit text-dark text-uppercase" mat-raised-button color="primary">Start now!</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="space-200"></div>
+
+</section>

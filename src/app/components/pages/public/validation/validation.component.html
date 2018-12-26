@@ -1,0 +1,347 @@
+<section style="background-color: rgba(59, 63, 69, 1);">
+    <div id="wrapper">
+        <div class="container">
+            <div class="row">
+                <div style="margin-top: 5%;" class="card card-redounded w-auto col-lg-10 text-center offset-lg-1">
+                    <div class="card-body">
+                        <h1 class="card-title font-16 campton-light text-center">
+                            Hey {{_auth.clientDriverObject.name}} welcome to <strong>wooTow Drivers</strong>. <br> We need more info about you for confirm your account please complete this steps to confirm your account.
+                        </h1>
+                        <hr>
+                        <div class="space-10"></div>
+                        <mat-tab-group>
+                            <mat-tab>
+                                <div class="col-sm">
+                                    <div class="space-20"></div>
+                                    <mat-card>
+                                        <form #FormPassportOrDni="ngForm" ngNativeValidate (ngSubmit)="FormData(FormPassportOrDni)">
+                                            <mat-card-content>
+                                                <mat-card-subtitle class="campton-bold font-16">
+                                                    Requirements to validate this document.
+                                                </mat-card-subtitle>
+                                                <mat-list>
+                                                    <mat-list-item class="font-14 campton-bold text-bold">
+                                                        <mat-icon class="example-tab-icon">trip_origin</mat-icon>&nbsp; Your full name
+                                                    </mat-list-item>
+                                                    <mat-list-item class="font-14 campton-bold text-bold">
+                                                        <mat-icon class="example-tab-icon">trip_origin</mat-icon>&nbsp; Your birthdate
+                                                    </mat-list-item>
+                                                    <mat-list-item class="font-14 campton-bold text-bold">
+                                                        <mat-icon class="example-tab-icon">trip_origin</mat-icon>&nbsp; Your place of birth
+                                                    </mat-list-item>
+                                                    <mat-list-item class="font-14 campton-bold text-bold">
+                                                        <mat-icon class="example-tab-icon">trip_origin</mat-icon>&nbsp; A visible photo
+                                                    </mat-list-item>
+                                                    <mat-list-item class="font-14 campton-bold text-bold">
+                                                        <mat-icon class="example-tab-icon">trip_origin</mat-icon>&nbsp; Issue date
+                                                    </mat-list-item>
+                                                    <mat-list-item class="font-14 campton-bold text-bold">
+                                                        <mat-icon class="example-tab-icon">trip_origin</mat-icon>&nbsp; Expiry date
+                                                    </mat-list-item>
+                                                </mat-list>
+                                                <img id="passport_dni_preview" *ngIf="!PASSPORT_OR_DNI && !loading" style="margin-left: 3%" mat-card-image class="img-thumbnail w-25" src="./assets/images/Unknown-person.gif" [alt]="_auth.clientDriverObject.name">
+                                                <mat-card-actions *ngIf="!PASSPORT_OR_DNI && !loading">
+                                                    <button type="button" *ngIf="!loadingDoc" (click)="DispatchFile('passport_dni_file');" class="btn-block font-22 campton-bold" mat-flat-button color="warn">Upload</button>
+                                                    <div *ngIf="loadingDoc" class="row">
+                                                        <div class="col-sm">
+                                                            <button type="submit" class="btn-block campton-bold font-22" color="primary" mat-raised-button>Send</button>
+                                                        </div>
+                                                        <div class="col-sm">
+                                                            <button type="button" (click)="cancelButton('passport_dni_preview');" class="btn-block campton-bold font-22" color="warn" mat-raised-button>Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </mat-card-actions>
+                                                <mat-card-actions class="text-center" *ngIf="loading">
+                                                    <mat-spinner class="offset-5"></mat-spinner>
+                                                </mat-card-actions>
+                                                <mat-card-footer *ngIf="PASSPORT_OR_DNI" style="background-color: #09c509">
+                                                    <h3 class="font-22 campton-bold text-white">
+                                                        Pending approval
+                                                    </h3>
+                                                </mat-card-footer>
+                                            </mat-card-content>
+                                            <fieldset *ngIf="!PASSPORT_OR_DNI" class="field-hidden">
+                                                <input [(ngModel)]="_auth._id" type="hidden" name="_key">
+                                                <input [(ngModel)]="_auth._token" type="hidden" name="token">
+                                                <input ngModel="PASSPORT" type="hidden" name="documentType" [value]="'PASSPORT'">
+                                                <input (change)="ReadURLImageData($event, 'passport_dni_preview');" ngModel id="passport_dni_file" name="image" type="file">
+                                            </fieldset>
+                                        </form>
+                                    </mat-card>
+                                </div>
+                                <ng-template mat-tab-label>
+                                    <span class="font-18 campton-bold text-bold">
+                                        DNI or Passport&nbsp;
+                                    </span>
+                                    <mat-icon *ngIf="!PASSPORT_OR_DNI" color="warn" class="example-tab-icon">highlight_off</mat-icon>
+                                    <mat-icon *ngIf="PASSPORT_OR_DNI" color="primary">check_circle_outline</mat-icon>
+                                </ng-template>
+                            </mat-tab>
+                            <mat-tab>
+                                <div class="col-sm">
+                                    <div class="space-20"></div>
+                                    <mat-card>
+                                        <form #FormLicense="ngForm" ngNativeValidate (ngSubmit)="FormData(FormLicense)">
+                                            <mat-card-content>
+                                                <mat-card-subtitle class="campton-bold font-16">
+                                                    Requirements to validate this document.
+                                                </mat-card-subtitle>
+                                                <mat-list>
+                                                    <mat-list-item class="font-14 campton-bold text-bold">
+                                                        <mat-icon class="example-tab-icon">trip_origin</mat-icon>&nbsp; Your full name
+                                                    </mat-list-item>
+                                                    <mat-list-item class="font-14 campton-bold text-bold">
+                                                        <mat-icon class="example-tab-icon">trip_origin</mat-icon>&nbsp; Your birthdate
+                                                    </mat-list-item>
+                                                    <mat-list-item class="font-14 campton-bold text-bold">
+                                                        <mat-icon class="example-tab-icon">trip_origin</mat-icon>&nbsp; Serial Number
+                                                    </mat-list-item>
+                                                    <mat-list-item class="font-14 campton-bold text-bold">
+                                                        <mat-icon class="example-tab-icon">trip_origin</mat-icon>&nbsp; Expiry date
+                                                    </mat-list-item>
+                                                </mat-list>
+                                                <img id="license_preview" *ngIf="!LICENSE && !loading" style="margin-left: 3%" mat-card-image class="img-thumbnail w-25" src="./assets/images/Unknown-person.gif" alt="wootow_proof">
+                                                <mat-card-actions *ngIf="!LICENSE && !loading">
+                                                    <button type="button" (click)="DispatchFile('license_file');" *ngIf="!loadingDoc" class="btn-block font-22 campton-bold" mat-flat-button color="warn">Upload</button>
+                                                    <div *ngIf="loadingDoc" class="row">
+                                                        <div class="col-sm">
+                                                            <button type="submit" color="primary" mat-raised-button class="btn-block campton-bold font-22">Send</button>
+                                                        </div>
+                                                        <div class="col-sm">
+                                                            <button type="button" (click)="cancelButton('license_preview');" color="warn" mat-raised-button class="btn-block campton-bold font-22">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </mat-card-actions>
+                                                <mat-card-actions class="text-center" *ngIf="loading">
+                                                    <mat-spinner class="offset-5"></mat-spinner>
+                                                </mat-card-actions>
+                                                <mat-card-footer *ngIf="LICENSE" style="background-color: #09c509">
+                                                    <h3 class="font-22 campton-bold text-white">
+                                                        Pending approval
+                                                    </h3>
+                                                </mat-card-footer>
+                                                <fieldset *ngIf="!LICENSE" class="field-hidden">
+                                                    <input [(ngModel)]="_auth._id" type="hidden" name="_key">
+                                                    <input [(ngModel)]="_auth._token" type="hidden" name="token">
+                                                    <input ngModel="LICENSE" type="hidden" name="documentType" [value]="'LICENSE'">
+                                                    <input (change)="ReadURLImageData($event, 'license_preview');" ngModel id="license_file" name="image" type="file">
+                                                </fieldset>
+                                            </mat-card-content>
+                                        </form>
+                                    </mat-card>
+                                </div>
+                                <ng-template mat-tab-label>
+                                    <span class="font-18 campton-bold text-bold">
+                                      Driver License&nbsp;
+                                  </span>
+                                    <mat-icon *ngIf="!LICENSE" color="warn" class="example-tab-icon">highlight_off</mat-icon>
+                                    <mat-icon *ngIf="LICENSE" color="primary">check_circle_outline</mat-icon>
+                                </ng-template>
+                            </mat-tab>
+                            <mat-tab>
+                                <div class="col-sm">
+                                    <div class="space-20"></div>
+                                    <mat-card>
+                                        <form #FormResidence="ngForm" ngNativeValidate (ngSubmit)="FormData(FormResidence)">
+                                            <mat-card-content>
+                                                <mat-card-subtitle class="campton-bold font-16">
+                                                    Requirements to validate this document.
+                                                    <br>
+                                                    <small class="text-muted openSansProRegular">
+                                                        Must be a Utility Bill (electricity, water, telephone, gas /energy, council tax/sanitation bills) or a Bank statement
+                                                    </small>
+                                                </mat-card-subtitle>
+                                                <mat-list>
+                                                    <mat-list-item class="font-14 campton-bold text-bold">
+                                                        <mat-icon class="example-tab-icon">trip_origin</mat-icon>&nbsp; Your full name
+                                                    </mat-list-item>
+                                                    <mat-list-item class="font-14 campton-bold text-bold">
+                                                        <mat-icon class="example-tab-icon">trip_origin</mat-icon>&nbsp; Address Information
+                                                    </mat-list-item>
+                                                    <mat-list-item class="font-14 campton-bold text-bold">
+                                                        <mat-icon class="example-tab-icon">trip_origin</mat-icon>&nbsp; Recent date (not older than 3 months)
+                                                    </mat-list-item>
+                                                </mat-list>
+                                                <img id="residence_preview" *ngIf="!RESIDENCE && !loading" style="margin-left: 3%" mat-card-image class="img-thumbnail w-25" src="./assets/images/Unknown-person.gif" [alt]="_auth.clientDriverObject.name">
+                                                <mat-card-actions *ngIf="!RESIDENCE && !loading">
+                                                    <button type="button" *ngIf="!loadingDoc" (click)="DispatchFile('residence_file');" class="btn-block font-22 campton-bold" mat-flat-button color="warn">Upload</button>
+                                                    <div *ngIf="loadingDoc" class="row">
+                                                        <div class="col-sm">
+                                                            <button type="submit" class="btn-block campton-bold font-22" color="primary" mat-raised-button>Send</button>
+                                                        </div>
+                                                        <div class="col-sm">
+                                                            <button type="button" (click)="cancelButton('passport_dni_preview');" class="btn-block campton-bold font-22" color="warn" mat-raised-button>Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </mat-card-actions>
+                                                <mat-card-actions class="text-center" *ngIf="loading">
+                                                    <mat-spinner class="offset-5"></mat-spinner>
+                                                </mat-card-actions>
+                                                <mat-card-footer *ngIf="RESIDENCE" style="background-color: #09c509">
+                                                    <h3 class="font-22 campton-bold text-white">
+                                                        Pending approval
+                                                    </h3>
+                                                </mat-card-footer>
+                                                <fieldset *ngIf="!RESIDENCE" class="field-hidden">
+                                                    <input [(ngModel)]="_auth._id" type="hidden" name="_key">
+                                                    <input [(ngModel)]="_auth._token" type="hidden" name="token">
+                                                    <input ngModel="RESIDENCE" type="hidden" name="documentType" [value]="'RESIDENCE'">
+                                                    <input (change)="ReadURLImageData($event, 'residence_preview');" ngModel id="residence_file" name="image" type="file">
+                                                </fieldset>
+                                            </mat-card-content>
+                                        </form>
+                                    </mat-card>
+                                </div>
+                                <ng-template mat-tab-label>
+                                    <span class="font-18 campton-bold text-bold">
+                                        Proof of residence&nbsp;
+                                    </span>
+                                    <mat-icon *ngIf="!RESIDENCE" color="warn" class="example-tab-icon">highlight_off</mat-icon>
+                                    <mat-icon *ngIf="RESIDENCE" color="primary">check_circle_outline</mat-icon>
+                                </ng-template>
+                            </mat-tab>
+                            <mat-tab>
+                                <div class="col-sm">
+                                    <div class="space-20"></div>
+                                    <mat-card>
+                                        <form #FormSelfie="ngForm" ngNativeValidate (ngSubmit)="FormData(FormSelfie)">
+                                            <mat-card-content>
+                                                <mat-card-subtitle class="campton-bold font-16">
+                                                    <small class="text-muted openSansProRegular">
+                                                        This photo is to show your profile for all clients.
+                                                    </small>
+                                                </mat-card-subtitle>
+                                                <mat-list>
+                                                    <mat-list-item class="font-14 campton-bold text-bold">
+                                                        <mat-icon class="example-tab-icon">trip_origin</mat-icon>&nbsp; Max file size 2MB.
+                                                    </mat-list-item>
+                                                    <mat-list-item class="font-14 campton-bold text-bold">
+                                                        <mat-icon class="example-tab-icon">trip_origin</mat-icon>&nbsp; Your photo without sunglasses
+                                                    </mat-list-item>
+                                                    <mat-list-item class="font-14 campton-bold text-bold">
+                                                        <mat-icon class="example-tab-icon">trip_origin</mat-icon>&nbsp; Your photo must be a selfie
+                                                    </mat-list-item>
+                                                    <mat-list-item class="font-14 campton-bold text-bold">
+                                                        <mat-icon class="example-tab-icon">trip_origin</mat-icon>&nbsp; Photo without partner or other people.
+                                                    </mat-list-item>
+                                                </mat-list>
+                                                <img id="selfie_preview" *ngIf="!SELFIE && !loading" style="margin-left: 3%" mat-card-image class="img-thumbnail w-25" src="./assets/images/Unknown-person.gif" alt="wootow_proof">
+                                                <mat-card-actions *ngIf="!SELFIE && !loading">
+                                                    <button type="button" (click)="DispatchFile('selfie_file');" *ngIf="!loadingDoc" class="btn-block font-22 campton-bold" mat-flat-button color="warn">Upload</button>
+                                                    <div *ngIf="loadingDoc" class="row">
+                                                        <div class="col-sm">
+                                                            <button type="submit" class="btn-block campton-bold font-22" color="primary" mat-raised-button>Send</button>
+                                                        </div>
+                                                        <div class="col-sm">
+                                                            <button (click)="cancelButton('selfie_preview');" type="button" class="btn-block campton-bold font-22" color="warn" mat-raised-button>Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </mat-card-actions>
+                                                <mat-card-actions class="text-center" *ngIf="loading">
+                                                    <mat-spinner class="offset-5"></mat-spinner>
+                                                </mat-card-actions>
+                                                <mat-card-footer *ngIf="SELFIE" style="background-color: #09c509">
+                                                    <h3 class="font-22 campton-bold text-white">
+                                                        Pending approval
+                                                    </h3>
+                                                </mat-card-footer>
+                                                <fieldset *ngIf="!SELFIE" class="field-hidden">
+                                                    <input [(ngModel)]="_auth._id" type="hidden" name="_key">
+                                                    <input [(ngModel)]="_auth._token" type="hidden" name="token">
+                                                    <input ngModel="SELFIE" type="hidden" name="documentType" [value]="'SELFIE'">
+                                                    <input (change)="ReadURLImageData($event, 'selfie_preview');" ngModel id="selfie_file" name="image" type="file">
+                                                </fieldset>
+                                            </mat-card-content>
+                                        </form>
+                                    </mat-card>
+                                </div>
+                                <ng-template mat-tab-label>
+                                    <span class="font-18 campton-bold text-bold">
+                                        Selfie&nbsp;
+                                    </span>
+                                    <mat-icon *ngIf="!SELFIE" color="warn" class="example-tab-icon">highlight_off</mat-icon>
+                                    <mat-icon *ngIf="SELFIE" color="primary">check_circle_outline</mat-icon>
+                                </ng-template>
+                            </mat-tab>
+                            <mat-tab>
+                                <div class="col-sm">
+                                    <div class="space-20"></div>
+                                    <mat-card>
+                                        <form #formVehicle="ngForm" ngNativeValidate (ngSubmit)="FormDataVehicle(formVehicle);">
+                                            <mat-card-content>
+                                                <mat-card-subtitle class="campton-bold font-16">
+                                                    <small class="text-muted openSansProRegular">
+                                                            We need your vehicle's data for work with Wootow Providers Services 
+                                                     </small>
+                                                </mat-card-subtitle>
+                                                <div class="space-10"></div>
+                                                <div class="form-row">
+                                                    <div class="form-group col-sm">
+                                                        <p>
+                                                            <mat-form-field color="warn" appearance="outline">
+                                                                <mat-label class="font-16 campton-bold">Tow Name</mat-label>
+                                                                <input name="tow_name" [(ngModel)]="TowData.tow_name" [disabled]="datafilled" required class="font-16 campton-bold" matInput placeholder="E.g: FORD-tow-truck">
+                                                                <mat-icon matSuffix>label</mat-icon>
+                                                            </mat-form-field>
+                                                        </p>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <p>
+                                                            <mat-form-field color="warn" appearance="outline">
+                                                                <mat-label class="font-16 campton-bold">TOW PLATE</mat-label>
+                                                                <input [(ngModel)]="TowData.tow_plate" name="tow_plate" [disabled]="datafilled" required class="font-16 campton-bold text-bold" matInput placeholder="E.g: 0737TTX">
+                                                                <mat-icon matSuffix>label</mat-icon>
+                                                            </mat-form-field>
+                                                        </p>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <p>
+                                                            <mat-form-field color="warn" appearance="outline">
+                                                                <mat-label class="font-16 campton-bold">Model</mat-label>
+                                                                <input [(ngModel)]="TowData.tow_model" name="tow_model" [disabled]="datafilled" required class="font-16 campton-bold" matInput placeholder="E.g: DieCast model">
+                                                                <mat-icon matSuffix>label</mat-icon>
+                                                            </mat-form-field>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <img id="tow_preview" *ngIf="!datafilled" style="margin-left: 3%" mat-card-image class="img-thumbnail w-25" src="./assets/images/no-image-icon-4.png" alt="wootow_proof">
+                                                <img *ngIf="datafilled" [src]="" class="img-thumbnail w-25" [alt]="TowData.tow_name">
+                                                <mat-card-actions>
+                                                    <button type="button" (click)="DispatchFile('tow_file');" *ngIf="!loadingDoc && !datafilled" class="btn-block font-22 campton-bold" mat-flat-button color="warn">Upload</button>
+                                                </mat-card-actions>
+                                                <mat-card-actions *ngIf="!loading">
+                                                    <div *ngIf="loadingDoc && !datafilled" class="row">
+                                                        <div class="col-sm">
+                                                            <button type="submit" class="btn-block campton-bold font-22" color="primary" mat-raised-button>Send</button>
+                                                        </div>
+                                                        <div class="col-sm">
+                                                            <button (click)="cancelButton('tow_preview');" type="button" class="btn-block campton-bold font-22" color="warn" mat-raised-button>Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </mat-card-actions>
+                                                <fieldset class="field-hidden">
+                                                    <input [(ngModel)]="_auth._id" type="hidden" name="_key">
+                                                    <input [(ngModel)]="_auth._token" type="hidden" name="token">
+                                                    <input (change)="ReadURLImageData($event, 'tow_preview');" ngModel id="tow_file" name="image" type="file">
+                                                </fieldset>
+                                            </mat-card-content>
+                                        </form>
+                                    </mat-card>
+                                </div>
+                                <ng-template mat-tab-label>
+                                    <span class="font-18 campton-bold text-bold">
+                                        Vehicle Data
+                                    </span>
+                                    <mat-icon *ngIf="!datafilled" color="warn" class="example-tab-icon">highlight_off</mat-icon>
+                                    <mat-icon *ngIf="datafilled" color="primary">check_circle_outline</mat-icon>
+                                </ng-template>
+                            </mat-tab>
+                        </mat-tab-group>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="space-120"></div>
+    <div *ngIf="PASSPORT_OR_DNI || RESIDENCE || SELFIE || LICENSE" class="space-200"></div>
+</section>
