@@ -7,6 +7,7 @@ import { AuthService } from './auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { DocumentsService } from './auth/documents.service';
 import { TowDataService } from './vehicles/tow-data.service';
+import { ClientServicesService } from './maps/client-services.service';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { TowDataService } from './vehicles/tow-data.service';
     PlacesService,
     AuthService,
     DocumentsService,
-    TowDataService
+    TowDataService,
+    ClientServicesService
   ]
 })
 export class ServicesModule { }

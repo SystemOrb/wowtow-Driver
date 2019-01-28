@@ -16,7 +16,7 @@
                     </i>
                 </button>
             </div>
-            <div fxFlexOffset.lg="35em" fxFlexOffset.xs="60px" fxFlexOffset.md="400px" fxFlexOffset.sm="200px" fxFlexOffset.xl="45em" fxFlex="33">
+            <div (click)="MarkersServices();" fxFlexOffset.lg="35em" fxFlexOffset.xs="60px" fxFlexOffset.md="400px" fxFlexOffset.sm="200px" fxFlexOffset.xl="45em" fxFlex="33">
                 <button class="bg-wowtow text-dark" mat-fab>
                 <i class="material-icons">
                     touch_app
@@ -38,6 +38,17 @@
     <div class="map-wrapper" id="wrapper" #wrapper>
         <agm-map [styles]="MapStyles" [latitude]="origin.lat" [longitude]="origin.lng" [scrollwheel]="true" [zoom]="zoom" (idle)="idle()" (centerChange)="centerChange($event)" id="AgmMap" #AgmMap>
             <agm-marker [latitude]="origin.lat" [longitude]="origin.lng" [markerClickable]="true"></agm-marker>
+            <!-- Mostramos los servicios cercanos al activarme -->
+            <ng-component *ngIf="_services.working">
+                <agm-marker (markerClick)="OpenCardCustomer(point._id, point.customer._id, point.service_ref, point.latitudeMain, point.longitudeMain, point.toLng, point.toLat);" [iconUrl]="ServicesMarketOption" [latitude]="point.latitudeMain" [longitude]="point.longitudeMain"
+                    [markerClickable]="true" *ngFor="let point of Markers"></agm-marker>
+            </ng-component>
+            <!-- Fin -->
+            <!-- Mostrar servicios ya tomados  -->
+            <ng-component *ngIf="_services.ServiceInProcess">
+                <agm-direction *ngFor="let dir of _services.ServiceCoordsInProcess" [renderOptions]="{suppressMarkers: true}" [origin]="dir.origin" [destination]="dir.destiny" [markerOptions]="_services.renderMarkers"></agm-direction>
+            </ng-component>
+            <!-- Fin de mostrar servicios -->
             <agm-direction [markerOptions]="markerOptions" [origin]="origin" [destination]="destiny" [renderOptions]="renderOption" *ngIf="destiny.lat !== 0 && destiny.lng !== 0"></agm-direction>
         </agm-map>
     </div>

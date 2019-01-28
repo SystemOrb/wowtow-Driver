@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
              return;
             } else {
               setTimeout((): void => {
-                this._router.navigate(['/home']);
+                this._router.navigate(['/']);
              }, 3000);
              return;
             }

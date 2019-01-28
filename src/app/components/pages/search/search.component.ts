@@ -19,7 +19,7 @@ export class SearchComponent implements OnInit {
       (event: any): void => {
         if (event !== null) {
           setTimeout((): void => {
-            this._router.navigate(['/home']);
+            this._router.navigate(['/']);
           }, 500);
         }
       }

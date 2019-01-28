@@ -1,0 +1,94 @@
+<div class="col-sm text-right">
+    <span (click)="closeModal(null);" class="pointer">
+            <i class="material-icons">
+                    clear
+            </i>
+    </span>
+</div>
+<mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
+    <mat-tab label="Customer Profile">
+        <div class="space-20"></div>
+        <div class="col-sm text-center">
+            <a onclick="return false;" href="#">
+                <img class="img-thumbnail w-25" src="./assets/images/Unknown-person.gif" [alt]="ClientProfile.vehicle.client.name">
+            </a>
+        </div>
+        <div class="space-30"></div>
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-sm">
+                    <h5 class="acumin">Name:&nbsp;<span class="badge badge-success">{{ClientProfile.vehicle.client.name}}</span></h5>
+                    <h5 class="acumin">Email:&nbsp;<span class="badge badge-success">{{ClientProfile.vehicle.client.email}}</span></h5>
+                </div>
+                <div class="col-sm">
+                    <h5 class="acumin">Phone:&nbsp;<span class="badge badge-success">{{ClientProfile.vehicle.client.phone}}</span></h5>
+                    <h5 class="acumin">Service Status:&nbsp;<span class="badge badge-danger">Waiting for Provider</span></h5>
+                </div>
+            </div>
+        </div>
+    </mat-tab>
+    <mat-tab label="Vehicle">
+        <div class="space-20"></div>
+        <div class="col-sm text-center">
+            <a onclick="return false;" href="#">
+                <img class="img-thumbnail w-25" [src]="ClientProfile.picture | imagesAWS:'no-image-icon-4.png'" [alt]="ClientProfile.vehicle.car_name">
+            </a>
+        </div>
+        <div class="space-30"></div>
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-sm">
+                    <h5 class="acumin">Car Model:&nbsp;<span class="badge badge-success">{{ClientProfile.vehicle.car_name}}</span></h5>
+                    <h5 class="acumin">Plate:&nbsp;<span class="badge badge-success">{{ClientProfile.vehicle.car_plate}}</span></h5>
+                </div>
+                <div class="col-sm">
+                    <h5 class="acumin">Colour:&nbsp;<span class="badge badge-success">{{ClientProfile.vehicle.car_colour}}</span></h5>
+                    <h5 class="acumin">Model:&nbsp;<span class="badge badge-danger">{{ClientProfile.vehicle.car_model}}</span></h5>
+                </div>
+            </div>
+        </div>
+    </mat-tab>
+    <mat-tab label="Accept Service">
+        <div class="space-20"></div>
+        <div class="col-sm text-center">
+            <a onclick="return false;" href="#">
+                <img class="img-thumbnail w-50" src="http://maps.googleapis.com/maps/api/staticmap?size=400x400
+                &center={{Coords.fromLat}},{{Coords.fromLng}}
+                &path=color:yellow|weight:10|{{Coords.fromLat}},{{Coords.fromLng}}|{{Coords.toLat}},{{Coords.toLng}}
+                &markers=color:yellow|label:M|{{Coords.fromLat}},{{Coords.fromLng}}
+                &markers=color:yellow|label:G|{{Coords.toLat}},{{Coords.toLng}}
+                &zoom=8&maptype=mobile&key=AIzaSyC025k9Zis8z0yCI7foth1VrlPqlE4etZY       
+                 " [alt]="ClientProfile.vehicle.car_model">
+            </a>
+        </div>
+        <div class="space-30"></div>
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-sm">
+                    <h5 class="acumin">Service Description:&nbsp;<span class="badge badge-success">{{TransactionRef.payment_description}}</span></h5>
+                    <h5 class="acumin">Date Service:&nbsp;<span class="badge badge-success">{{TransactionRef.create | date}}</span></h5>
+                    <h5 class="acumin">Payment Type:&nbsp;<span class="badge badge-success">{{TransactionRef.card_type}}</span></h5>
+                </div>
+                <div class="col-sm">
+                    <h5 class="acumin">Amount:&nbsp;<span class="badge badge-success">{{TransactionRef.amount}}$</span></h5>
+                    <h5 class="acumin">Tax:&nbsp;<span class="badge badge-success">15$</span></h5>
+                    <h5 class="acumin">Dispute:&nbsp;<span class="badge badge-info">{{TransactionRef.dispute}}</span></h5>
+                </div>
+            </div>
+            <div class="space-20"></div>
+            <div class="row">
+                <div class="col-sm text-center">
+                    <form #takenService="ngForm" ngNativeValidate (ngSubmit)="ActivateService(takenService);">
+                        <fieldset>
+                            <input ngModel="true" type="hidden" name="taken">
+                            <input ngModel="taken" type="hidden" name="serviceStatus">
+                            <input [(ngModel)]="key.service_id" type="hidden" name="service_ref">
+                            <input [(ngModel)]="_auth._id" type="hidden" name="provider">
+                        </fieldset>
+                        <button [disabled]="loading" type="submit" class="btn-accept btn-block font-16 campton-bold" mat-raised-button color="primary">Accept Service</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </mat-tab>
+</mat-tab-group>

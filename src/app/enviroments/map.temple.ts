@@ -1,3 +1,4 @@
+// Snazy maps
 export const MAP_TEMPLE = [
     {
       'featureType': 'all',

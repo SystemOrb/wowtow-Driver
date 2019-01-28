@@ -9,12 +9,12 @@ import { TravelComponent } from './travel/travel.component';
 
 
 const routes: Routes = [
-    {path: 'home', component: MapComponent},
+    {path: '', component: MapComponent},
     {path: 'profile/:driver', component: ProfileComponent},
     {path: 'payments/:driver', component: PaymentsComponent},
     {path: 'places', component: SearchComponent},
     {path: 'travels/:driver', component: TravelComponent},
-    {path: '', pathMatch: 'full', redirectTo: '/home'}
+    {path: '', pathMatch: 'full', redirectTo: '/'}
 ];
 
 @NgModule({

@@ -12,6 +12,8 @@ import { PagesRoutingModule } from './pages.routes';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { AgmDirectionModule } from 'agm-direction';
+import { CustomerCardComponent } from './map/customer-card.component';
+import { ImagesAWSPipe } from '../../services/pipes/images-aws.pipe';
 @NgModule({
   imports: [
     CommonModule,
@@ -32,8 +34,10 @@ import { AgmDirectionModule } from 'agm-direction';
     SearchComponent,
     ProfileComponent,
     PaymentsComponent,
-    MapComponent
+    MapComponent,
+    CustomerCardComponent,
+    ImagesAWSPipe
   ],
-  entryComponents: [MapComponent]
+  entryComponents: [MapComponent, CustomerCardComponent]
 })
 export class PagesModule { }
